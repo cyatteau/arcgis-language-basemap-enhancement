@@ -2,7 +2,7 @@
 
 ### Description
 
-Place labels in ArcGIS basemap styles, by defaul, are rendered with global place names. The ArcGIS basemap language enhancement allows for language localization through the language parameter.
+Place labels in ArcGIS basemap styles, by default, are rendered with global place names. The ArcGIS basemap language enhancement allows for language localization through the language parameter.
 
 ### Other Requirements
 
