@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+    <link
+      href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://js.arcgis.com/calcite-components/1.4.2/calcite.esm.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://js.arcgis.com/calcite-components/1.4.2/calcite.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Enhancement App</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .langInput {
+        position: absolute;
+        top: 1%;
+        right: 8%;
+        z-index: 100;
+      }
+      .langBtn {
+        position: absolute;
+        top: 1%;
+        right: 0.5%;
+        z-index: 100;
+      }
+    </style>
+    <div id="map"></div>
+    <calcite-input-text placeholder="Enter language code" class="langInput" id="langInput" /></calcite-input-text>
+    <calcite-button class="langBtn" id="langBtn">Change Language</calcite-button>
+    <script type="module">
+      const apiKey =
+        "AAPKa2e75762cf67409a86af30d10be5a49dyVG402QjxPpUBGJlpAb9aQ1mCPEl5kgCBvUmLDA-gCYQcpOzyczieZ5jRuho2ipE";
+      const basemapStyle = "arcgis/navigation";
+      let esriStyleService = `https://basemapstyles-api.arcgis.com/arcgis/rest/services/styles/v2/styles/${basemapStyle}?type=style&token=${apiKey}`;
+      let langInput = document.getElementById("langInput");
+      let langInputVal = "";
+      let langBtn = document.getElementById("langBtn");
+      langBtn.addEventListener("click", () => {
+        langInputVal = langInput.value;
+        var map = new maplibregl.Map({
+          container: "map",
+          style: esriStyleService + `&language=${langInputVal}`,
+          center: [23.7275, 37.9838],
+          zoom: 11,
+        });
+      });
+      function showMap() {
+        var map = new maplibregl.Map({
+          container: "map",
+          style: esriStyleService,
+          center: [23.7275, 37.9838],
+          zoom: 11,
+        });
+      }
+      showMap();
+    </script>
+  </body>
+</html>
